@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>NLP project</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-    <script type="application/javascript" src="index.js" ></script>
+
+    <script src="jquery.js"></script>
+    <script src="index.js" ></script>
 </head>
 <body>
     <h1>Add StackOverflow question:</h1>
     <form>
         Title:<br>
-        <input type="text" name="firstname"><br>
+        <input style="width: 475px;" type="text" id="title"><br>
         Body:<br>
-        <textarea></textarea>
-        <button id="submitBtn" type="submit">Submit</button>
+        <textarea id="body" style="width: 839px; margin: 0px; height: 210px;"></textarea><br>
+        <button  id="submitBtn" type="button" >Submit</button>
     </form>
+    <br>
+    <br>
+    <h4 id="tag"> </h4>
+    <br>
+    <br>
+    <button id="train">Train Model</button>
+    <h4 id="train-status"> </h4>
+    <br>
+    <br>
+    <button id="test">Run test data</button>
+    <h4 id="test-status"> </h4>
 </body>
 </html>
