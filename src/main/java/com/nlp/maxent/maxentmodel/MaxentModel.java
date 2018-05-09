@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 public class MaxentModel {
 
     public static final String ModelFileName = "en-so-classifier-maxent.bin";
-    public static final String TestDataFileName = "test-data.txt";
+    public static final String TestDataFileName = "test-data2.txt";
     public static final String TrainDataFileName = "train-data.txt";
 
     public MaxentModel() {
@@ -33,16 +33,17 @@ public class MaxentModel {
         DoccatModel model = readModel(ModelFileName);
         List<List<String>> testData = readTestData(TestDataFileName);
         String result = "";
-        int testDataCount = testData.size();
-        int successfulPredictions = 0;
+        double testDataCount = testData.size();
+        double successfulPredictions = 0;
         for (List<String> testDatum: testData) {
             String originalTag = testDatum.get(0);
             String predictedTag = evaluateModel(model, testDatum.get(1));
-            result += "originalTag: " + originalTag + ", predictedTag: " + predictedTag + "\n";
+//            result += "originalTag: " + originalTag + ", predictedTag: " + predictedTag + "\n";
             if (predictedTag.equals(originalTag))
                 successfulPredictions++;
         }
-        result += "\n" + successfulPredictions + " out of " + testDataCount + " successful predictions";
+        double percentage = (successfulPredictions / testDataCount) * 100;
+        result += "\n" + successfulPredictions + " out of " + testDataCount + " successful predictions, percentage: " + percentage + "%";
         return result;
     }
 
@@ -86,7 +87,7 @@ public class MaxentModel {
 
             // define the training parameters
             TrainingParameters params = new TrainingParameters();
-            params.put(TrainingParameters.ITERATIONS_PARAM, 10 + "");
+            params.put(TrainingParameters.ITERATIONS_PARAM, 20 + "");
             params.put(TrainingParameters.CUTOFF_PARAM, 0 + "");
 
             // create a model from traning data
